@@ -3,13 +3,22 @@
     padding: 0;
     box-sizing: border-box;
 }
-
+h1 {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-variant: bold;
+}
 body {
     background-color: #856246;
     font-family: Arial, sans-serif;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
+}
+body > .main-layout img {
+    border-radius: 15px;
+}
+body img {
+    border-radius: 15px;
 }
 
 .header {
@@ -27,14 +36,12 @@ body {
 
 .center-text {
     text-align: center;
-    font-size: 28px;
-    font-weight: bold;
-    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 16px;
     flex: 1;
 }
 
 .center {
-  text-align: center;
+text-align: center;
 }
 .right-text {
     font-size: 16px;
@@ -42,7 +49,7 @@ body {
 }
 .left-text {
     font-size: 16px;
-    text-align: right;
+    text-align: left;
 }
 
 .main-layout {
@@ -83,4 +90,137 @@ footer {
 
 footer img {
     height: 121px;
+}
+
+.justify-text {
+    display: flex;
+    flex-direction: grid;
+}
+
+.producto {
+    position: relative;
+    display: inline-block;
+    margin: 10px;
+}
+
+.producto img {
+    width: 200px; /* o el tamaño que prefieras */
+    height: auto;
+    border-radius: 15px;
+    transition: 0.3s ease;
+}
+
+.menu-compra {
+    display: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(102, 85, 71, 0.9);
+    padding: 10px;
+    border-radius: 10px;
+    text-align: center;
+    z-index: 1;
+}
+
+.menu-compra button {
+    display: block;
+    margin: 5px 0;
+    background-color: hsl(93, 43%, 65%);
+    border: none;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.producto:hover .menu-compra {
+    display: block;
+}
+
+
+
+
+
+
+
+/* carrito */
+
+#carrito {
+    background-color: #fff;
+    color: #000;
+    padding: 10px;
+    border-radius: 10px;
+    margin-top: 20px;
+}
+
+#carrito ul {
+    list-style: none;
+    padding: 0;
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+#carrito li {
+    margin-bottom: 5px;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 5px;
+}
+
+/* Loader general */
+#loader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #f2e4d3;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Barra de carga */
+.loading-bar {
+    position: relative;
+    width: 80%;
+    height: 20px;
+    background-color: #d2b48c; /* color tierra */
+    overflow: hidden;
+    border-radius: 10px;
+}
+
+/* Suelo arado */
+.soil {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 0%;
+    background-color: #a98258;
+    animation: fillBar 3s linear forwards;
+}
+
+/* Tractor */
+.tractor {
+    position: absolute;
+    top: -40px;
+    left: 0;
+    font-size: 32px;
+    width: 40px;
+    height: 40px;
+    background-image: url(/img/arado.png);
+    background-size: cover;
+    animation: moveTractor 3s linear forwards;
+}
+
+/* Animaciones */
+@keyframes moveTractor {
+    from { left: 0; }
+    to { left: calc(100% - 40px); }
+}
+
+@keyframes fillBar {
+    from { width: 0%; }
+    to { width: 100%; }
 }
