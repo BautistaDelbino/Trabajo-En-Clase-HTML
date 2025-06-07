@@ -1,12 +1,15 @@
+/* Reset y base */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
+
 h1 {
     font-family: Georgia, 'Times New Roman', Times, serif;
-    font-variant: bold;
+    font-weight: bold;
 }
+
 body {
     background-color: #856246;
     font-family: Arial, sans-serif;
@@ -14,9 +17,11 @@ body {
     display: flex;
     flex-direction: column;
 }
+
 body > .main-layout img {
     border-radius: 15px;
 }
+
 body img {
     border-radius: 15px;
 }
@@ -41,12 +46,14 @@ body img {
 }
 
 .center {
-text-align: center;
+    text-align: center;
 }
+
 .right-text {
     font-size: 16px;
     text-align: right;
 }
+
 .left-text {
     font-size: 16px;
     text-align: left;
@@ -133,18 +140,12 @@ footer img {
     cursor: pointer;
 }
 
-.producto:hover .menu-compra {
+.producto:hover .menu-compra,
+.producto:focus-within .menu-compra {
     display: block;
 }
 
-
-
-
-
-
-
 /* carrito */
-
 #carrito {
     background-color: #fff;
     color: #000;
@@ -171,56 +172,66 @@ footer img {
     position: fixed;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: #f2e4d3;
+    right: 0;
+    bottom: 0;
+    background-color: #000;
     z-index: 9999;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-/* Barra de carga */
+/* Animaciones de loader */
 .loading-bar {
     position: relative;
-    width: 80%;
+    width: 200px;
     height: 20px;
-    background-color: #d2b48c; /* color tierra */
-    overflow: hidden;
+    background-color: #665547;
     border-radius: 10px;
+    overflow: hidden;
 }
 
-/* Suelo arado */
+.tractor {
+    width: 40px;
+    height: 20px;
+    background-color: #bb7a3d;
+    position: absolute;
+    left: -40px;
+    animation: moverTractor 3s linear infinite;
+    border-radius: 5px;
+}
+
 .soil {
     position: absolute;
-    top: 0;
+    bottom: 0;
     left: 0;
-    height: 100%;
-    width: 0%;
-    background-color: #a98258;
-    animation: fillBar 3s linear forwards;
+    height: 5px;
+    width: 100%;
+    background-color: #774f38;
 }
 
-/* Tractor */
-.tractor {
-    position: absolute;
-    top: -40px;
-    left: 0;
-    font-size: 32px;
-    width: 40px;
-    height: 40px;
-    background-image: url(/img/arado.png);
-    background-size: cover;
-    animation: moveTractor 3s linear forwards;
+@keyframes moverTractor {
+    0% {
+        left: -40px;
+    }
+    100% {
+        left: 100%;
+    }
 }
 
-/* Animaciones */
-@keyframes moveTractor {
-    from { left: 0; }
-    to { left: calc(100% - 40px); }
-}
-
-@keyframes fillBar {
-    from { width: 0%; }
-    to { width: 100%; }
+/* Responsividad */
+@media (max-width: 768px) {
+    .main-layout {
+        flex-direction: column;
+    }
+    .izquierda,
+    .derecha,
+    .centro {
+        flex: none;
+        width: 100%;
+        margin-bottom: 10px;
+    }
+    .derecha img {
+        width: 100%;
+    }
 }

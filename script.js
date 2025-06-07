@@ -1,4 +1,4 @@
-const carrito = {}; // Usamos un objeto para agrupar productos por nombre
+const carrito = {}; // Objeto para agrupar productos por nombre
 let total = 0;
 
 const listaCarrito = document.getElementById('lista-carrito');
@@ -77,13 +77,12 @@ function actualizarCarrito() {
     totalElemento.textContent = total.toFixed(2);
 }
 
-
-/* OCULTAR LOUDER*/
+/* OCULTAR LOADER */
 window.addEventListener("load", function () {
     const loader = document.getElementById("loader");
     setTimeout(() => {
         loader.style.opacity = "0";
         loader.style.transition = "opacity 0.5s ease";
         setTimeout(() => loader.style.display = "none", 500);
-    }, 3000); // espera a que termine la animación
+    }, 3000);
 });
