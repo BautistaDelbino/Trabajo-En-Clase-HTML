@@ -1,88 +1,66 @@
-const carrito = {}; // Objeto para agrupar productos por nombre
-let total = 0;
+// script.js
 
+const carritoIcono = document.getElementById('icono-carrito');
+const menuCarrito = document.getElementById('menu-carrito');
 const listaCarrito = document.getElementById('lista-carrito');
-const totalElemento = document.getElementById('total');
-const vaciarBtn = document.getElementById('vaciar-carrito');
-const finalizarBtn = document.getElementById('finalizar-compra');
+const totalCarrito = document.getElementById('total-carrito');
+const cerrarCarritoBtn = document.getElementById('cerrar-carrito');
+const finalizarCompraBtn = document.getElementById('finalizar-compra');
 
-document.querySelectorAll('.carrito-btn').forEach(btn => {
-    btn.addEventListener('click', function () {
-        const producto = this.closest('.producto');
-        const nombre = producto.getAttribute('data-nombre');
-        const precio = parseFloat(producto.getAttribute('data-precio'));
+let carrito = {};
 
-        if (carrito[nombre]) {
-            carrito[nombre].cantidad += 1;
-        } else {
-            carrito[nombre] = {
-                precio: precio,
-                cantidad: 1
-            };
-        }
-
-        total += precio;
-        actualizarCarrito();
-    });
+// Mostrar/ocultar menú carrito
+carritoIcono.addEventListener('click', () => {
+  menuCarrito.classList.toggle('oculto');
 });
 
-document.querySelectorAll('.comprar-btn').forEach(btn => {
-    btn.addEventListener('click', function () {
-        const producto = this.closest('.producto');
-        const nombre = producto.getAttribute('data-nombre');
-        const precio = parseFloat(producto.getAttribute('data-precio'));
-
-        alert(`Compraste ${nombre} por $${precio.toFixed(2)}.`);
-    });
+// Cerrar carrito con botón
+cerrarCarritoBtn.addEventListener('click', () => {
+  menuCarrito.classList.add('oculto');
 });
 
-vaciarBtn.addEventListener('click', function () {
-    for (let key in carrito) {
-        delete carrito[key];
-    }
-    total = 0;
-    actualizarCarrito();
-});
-
-finalizarBtn.addEventListener('click', function () {
-    if (Object.keys(carrito).length === 0) {
-        alert("El carrito está vacío.");
-        return;
-    }
-
-    let mensaje = "Resumen de tu compra:\n";
-    for (let nombre in carrito) {
-        const item = carrito[nombre];
-        mensaje += `${nombre} x ${item.cantidad} = $${(item.precio * item.cantidad).toFixed(2)}\n`;
-    }
-    mensaje += `\nTotal: $${total.toFixed(2)}`;
-    alert(mensaje);
-
-    // Limpia el carrito después de finalizar
-    for (let key in carrito) {
-        delete carrito[key];
-    }
-    total = 0;
-    actualizarCarrito();
-});
-
-function actualizarCarrito() {
-    listaCarrito.innerHTML = '';
-    for (let nombre in carrito) {
-        const item = carrito[nombre];
-        const li = document.createElement('li');
-        li.textContent = `${nombre} x ${item.cantidad} - $${(item.precio * item.cantidad).toFixed(2)}`;
-        listaCarrito.appendChild(li);
-    }
-    totalElemento.textContent = total.toFixed(2);
+// Función para agregar producto al carrito
+function agregarAlCarrito(nombre, precio) {
+  if (carrito[nombre]) {
+    carrito[nombre].cantidad++;
+  } else {
+    carrito[nombre] = { precio, cantidad: 1 };
+  }
+  actualizarCarrito();
 }
 
-/* OCULTAR LOADER */
-window.addEventListener("load", function () {
-    const loader = document.getElementById("loader");
-    setTimeout(() => {
-        loader.style.opacity = "0";
-        loader.style.transition = "opacity 0.5s ease";
-        setTimeout(() => loader.style.display = "none", 500);
-    }, 3000);
+// Actualizar la lista y total en el carrito
+function actualizarCarrito() {
+  listaCarrito.innerHTML = '';
+
+  let total = 0;
+  for (const producto in carrito) {
+    const item = carrito[producto];
+    const subtotal = item.precio * item.cantidad;
+    total += subtotal;
+
+    const li = document.createElement('li');
+    li.textContent = `${producto} x${item.cantidad} : $${subtotal}`;
+    listaCarrito.appendChild(li);
+  }
+  totalCarrito.textContent = `Total: $${total}`;
+}
+
+// Función para compra instantánea
+function ventaInstantanea(nombre, precio) {
+  alert(`Has comprado instantáneamente: ${nombre} por $${precio}`);
+  // Aquí podrías agregar más lógica para procesar la venta instantánea en un backend o similar
+}
+
+// Botón finalizar compra
+finalizarCompraBtn.addEventListener('click', () => {
+  if (Object.keys(carrito).length === 0) {
+    alert('Tu carrito está vacío.');
+    return;
+  }
+
+  alert('Compra finalizada con éxito.\nGracias por comprar en Verdulería Pocho.');
+  carrito = {}; // Vaciar carrito
+  actualizarCarrito();
+  menuCarrito.classList.add('oculto');
 });

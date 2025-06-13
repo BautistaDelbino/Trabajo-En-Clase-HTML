@@ -1,143 +1,115 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" href="style.css" />
-    <title>Verdulería</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Verdulería Pocho</title>
+  <link rel="stylesheet" href="styles.css" />
 </head>
-
 <body>
-    <!-- Loader -->
-    <div id="loader">
-        <div class="loading-bar">
-            <div class="tractor"></div>
-            <div class="soil"></div>
-        </div>
+  <header>
+    <div class="logo">
+      <img src="img/logo.png" alt="Logo Verdulería" />
     </div>
-
-    <header class="header">
-        <img src="img/logo.png" alt="Logo De Empresa" />
-        <div class="center-text">
-            <h1>Verdulería Pocho</h1>
-        </div>
-    </header>
-
-    <div class="main-layout">
-        <aside class="columna izquierda">
-            <!-- Aquí podrías agregar contenido extra -->
-        </aside>
-
-        <section class="columna centro">
-            <div class="center-text">
-                <h2>Productos</h2>
-            </div>
-
-            <div class="producto" data-nombre="Zanahoria" data-precio="100">
-                <img src="img/foto1.jpg" alt="Zanahoria" />
-                <div class="menu-compra">
-                    <button class="comprar-btn">Comprar</button>
-                    <button class="carrito-btn">Agregar al carrito</button>
-                </div>
-            </div>
-
-            <div class="producto" data-nombre="Manzana" data-precio="100">
-                <img src="img/foto2.jpg" alt="Manzana" />
-                <div class="menu-compra">
-                    <button class="comprar-btn">Comprar</button>
-                    <button class="carrito-btn">Agregar al carrito</button>
-                </div>
-            </div>
-
-            <div class="producto" data-nombre="Pera" data-precio="100">
-                <img src="img/foto3.jpg" alt="Pera" />
-                <div class="menu-compra">
-                    <button class="comprar-btn">Comprar</button>
-                    <button class="carrito-btn">Agregar al carrito</button>
-                </div>
-            </div>
-
-            <div class="producto" data-nombre="Lechuga" data-precio="100">
-                <img src="img/foto4.jpg" alt="Lechuga" />
-                <div class="menu-compra">
-                    <button class="comprar-btn">Comprar</button>
-                    <button class="carrito-btn">Agregar al carrito</button>
-                </div>
-            </div>
-
-            <div class="producto" data-nombre="Lechuga" data-precio="100">
-                <img src="img/foto5.jpg" alt="Lechuga" />
-                <div class="menu-compra">
-                    <button class="comprar-btn">Comprar</button>
-                    <button class="carrito-btn">Agregar al carrito</button>
-                </div>
-            </div>
-
-            <div class="producto" data-nombre="Cebolla" data-precio="100">
-                <img src="img/foto6.jpg" alt="Cebolla" />
-                <div class="menu-compra">
-                    <button class="comprar-btn">Comprar</button>
-                    <button class="carrito-btn">Agregar al carrito</button>
-                </div>
-            </div>
-
-            <div class="producto" data-nombre="Pepino" data-precio="100">
-                <img src="img/foto7.jpg" alt="Pepino" />
-                <div class="menu-compra">
-                    <button class="comprar-btn">Comprar</button>
-                    <button class="carrito-btn">Agregar al carrito</button>
-                </div>
-            </div>
-
-            <div class="producto" data-nombre="Tomate" data-precio="100">
-                <img src="img/foto8.jpg" alt="Tomate" />
-                <div class="menu-compra">
-                    <button class="comprar-btn">Comprar</button>
-                    <button class="carrito-btn">Agregar al carrito</button>
-                </div>
-            </div>
-
-            <div class="producto" data-nombre="Banana" data-precio="100">
-                <img src="img/foto9.jpg" alt="Banana" />
-                <div class="menu-compra">
-                    <button class="comprar-btn">Comprar</button>
-                    <button class="carrito-btn">Agregar al carrito</button>
-                </div>
-            </div>
-        </section>
-
-        <aside class="columna derecha">
-            <a href="https://facepunch.com/" target="_blank" rel="noopener noreferrer">
-                <img src="img/banner.jpg" alt="Publicidad" />
-            </a>
-
-            <div id="carrito" aria-live="polite" aria-label="Carrito de compras">
-                <h3>Carrito</h3>
-                <ul id="lista-carrito"></ul>
-                <p>Total: $<span id="total">0</span></p>
-                <button id="vaciar-carrito" aria-label="Vaciar carrito">Vaciar carrito</button>
-                <button id="finalizar-compra" aria-label="Finalizar compra">Finalizar compra</button>
-            </div>
-        </aside>
+    <h1>Verduleria Pocho</h1>
+    <div class="carrito-container">
+      <img id="icono-carrito" src="img/carrito.png" alt="Carrito" />
+      <div id="menu-carrito" class="menu-carrito oculto">
+        <h3>Tu carrito</h3>
+        <ul id="lista-carrito"></ul>
+        <p id="total-carrito">Total: $0</p>
+        <button id="finalizar-compra">Finalizar compra</button>
+        <button id="cerrar-carrito">Cerrar</button>
+      </div>
     </div>
+  </header>
 
-    <footer class="footer">
-        <div class="columna izquierda">
-            <!-- Espacio para contenido adicional -->
+  <main class="contenedor">
+    <section class="productos">
+      <div class="producto">
+        <h2>Producto 1</h2>
+        <div class="producto-box">
+          <img src="img/foto1.jpg" alt="Producto 1" />
+          <button onclick="ventaInstantanea('Producto 1', 50)">Comprar</button>
+          <button onclick="agregarAlCarrito('Producto 1', 50)">Agregar al Carrito</button>
         </div>
-
-        <div class="center-text columna centro">
-            Contactos:<br />
-            Tel: +54 9 11 3456-7890<br />
-            Instagram: @verduleriapocho.ok<br />
-            Facebook: VerduleriaPocho
+      </div>
+      <div class="producto">
+        <h2>Producto 2</h2>
+        <div class="producto-box">
+          <img src="img/foto2.jpg" alt="Producto 2" />
+          <button onclick="ventaInstantanea('Producto 2', 30)">Comprar</button>
+          <button onclick="agregarAlCarrito('Producto 2', 30)">Agregar al Carrito</button>
         </div>
-
-        <div class="columna derecha justify-text">
-            En nuestra verdulería trabajamos con proveedores de la mejor calidad, garantizando frutas y verduras siempre frescas, sabrosas y cuidadosamente seleccionadas para vos
+      </div>
+      <div class="producto">
+        <h2>Producto 3</h2>
+        <div class="producto-box">
+          <img src="img/foto3.jpg" alt="Producto 3" />
+          <button onclick="ventaInstantanea('Producto 3', 20)">Comprar</button>
+          <button onclick="agregarAlCarrito('Producto 3', 20)">Agregar al Carrito</button>
         </div>
-    </footer>
+      </div>
+      <!-- Añade productos 4 a 9 aquí igual que antes -->
+      <div class="producto">
+        <h2>Producto 4</h2>
+        <div class="producto-box">
+          <img src="img/foto4.jpg" alt="Producto 4" />
+          <button onclick="ventaInstantanea('Producto 4', 15)">Comprar</button>
+          <button onclick="agregarAlCarrito('Producto 4', 15)">Agregar al Carrito</button>
+        </div>
+      </div>
+      <div class="producto">
+        <h2>Producto 5</h2>
+        <div class="producto-box">
+          <img src="img/foto5.jpg" alt="Producto 5" />
+          <button onclick="ventaInstantanea('Producto 5', 25)">Comprar</button>
+          <button onclick="agregarAlCarrito('Producto 5', 25)">Agregar al Carrito</button>
+        </div>
+      </div>
+      <div class="producto">
+        <h2>Producto 6</h2>
+        <div class="producto-box">
+          <img src="img/foto6.jpg" alt="Producto 6" />
+          <button onclick="ventaInstantanea('Producto 6', 40)">Comprar</button>
+          <button onclick="agregarAlCarrito('Producto 6', 40)">Agregar al Carrito</button>
+        </div>
+      </div>
+      <div class="producto">
+        <h2>Producto 7</h2>
+        <div class="producto-box">
+          <img src="img/foto7.jpg" alt="Producto 7" />
+          <button onclick="ventaInstantanea('Producto 7', 18)">Comprar</button>
+          <button onclick="agregarAlCarrito('Producto 7', 18)">Agregar al Carrito</button>
+        </div>
+      </div>
+      <div class="producto">
+        <h2>Producto 8</h2>
+        <div class="producto-box">
+          <img src="img/foto8.jpg" alt="Producto 8" />
+          <button onclick="ventaInstantanea('Producto 8', 12)">Comprar</button>
+          <button onclick="agregarAlCarrito('Producto 8', 12)">Agregar al Carrito</button>
+        </div>
+      </div>
+      <div class="producto">
+        <h2>Producto 9</h2>
+        <div class="producto-box">
+          <img src="img/foto9.jpg" alt="Producto 9" />
+          <button onclick="ventaInstantanea('Producto 9', 35)">Comprar</button>
+          <button onclick="agregarAlCarrito('Producto 9', 35)">Agregar al Carrito</button>
+        </div>
+      </div>
+    </section>
 
-    <script src="script.js"></script>
+    <aside class="publicidad">
+      <img src="img/banner.jpg" alt="Publicidad" />
+    </aside>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Verdulería Pocho - Todos los derechos reservados.</p>
+  </footer>
+
+  <script src="script.js"></script>
 </body>
 </html>
