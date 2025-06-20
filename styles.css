@@ -8,17 +8,19 @@
 /* Estilos generales */
 body {
   font-family: Arial, sans-serif;
-  background-color: #000000;
+  background-color: #121212; /* gris oscuro */
+  color: #e0e0e0; /* texto claro */
+  overflow-x: hidden;
 }
 
 /* Header */
 header {
-  background-color: #353535;
-  color: white;
+  background-color: #333333; /* gris medio */
+  color: #e0e0e0;
   display: flex;
   align-items: center;
   padding: 15px 20px;
-  position: relative;
+  flex-wrap: wrap;
 }
 
 header .logo img {
@@ -32,9 +34,7 @@ header h1 {
   flex: 1;
 }
 
-/* Contenedor carrito a la derecha */
 .carrito-container {
-  margin-left: auto; /* empuja el carrito a la derecha */
   position: relative;
 }
 
@@ -42,18 +42,19 @@ header h1 {
   height: 40px;
   width: 40px;
   cursor: pointer;
+  filter: brightness(0) invert(1); /* icono blanco/gris claro */
 }
 
-/* Menú carrito desplegable */
+/* Menú del carrito */
 .menu-carrito {
   position: absolute;
   top: 60px;
   right: 0;
-  background-color: #fff;
-  color: #000;
+  background-color: #222222; /* gris oscuro */
+  color: #e0e0e0;
   width: 300px;
   border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.3);
+  box-shadow: 0 0 10px rgba(255,255,255,0.1);
   padding: 15px;
   z-index: 1000;
 }
@@ -78,26 +79,30 @@ header h1 {
   margin-bottom: 8px;
 }
 
-#cerrar-carrito, #finalizar-compra {
-  background-color: #505050;
+/* Botones del menú carrito */
+#cerrar-carrito,
+#finalizar-compra {
+  background-color: #555555;
   border: none;
-  color: white;
+  color: #e0e0e0;
   padding: 8px 12px;
   border-radius: 5px;
   cursor: pointer;
-  margin-right: 10px;
   margin-top: 5px;
+  margin-right: 10px;
   transition: background-color 0.3s ease;
 }
 
-#cerrar-carrito:hover, #finalizar-compra:hover {
-  background-color: #505050;
+#cerrar-carrito:hover,
+#finalizar-compra:hover {
+  background-color: #888888;
 }
 
-/* Layout principal */
+/* Main layout */
 main.contenedor {
   display: flex;
   padding: 60px;
+  gap: 30px;
 }
 
 /* Sección de productos */
@@ -108,24 +113,23 @@ main.contenedor {
   flex: 3;
 }
 
-/* Recuadro general del producto */
+/* Producto individual */
 .producto {
-  background-color: #2b2b2b;
+  background-color: #1e1e1e; /* gris oscuro */
   padding: 15px;
   border-radius: 15px;
   text-align: center;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.05);
 }
 
-/* Título del producto */
 .producto h2 {
   margin-bottom: 10px;
   font-size: 18px;
+  color: #ddd;
 }
 
-/* Caja interna gris (imagen y botones) */
 .producto-box {
-  background-color: #585858;
+  background-color: #333333; /* gris medio */
   padding: 10px;
   border-radius: 10px;
   display: flex;
@@ -133,7 +137,6 @@ main.contenedor {
   align-items: center;
 }
 
-/* Imagen del producto */
 .producto-box img {
   width: 250px;
   height: 250px;
@@ -142,41 +145,152 @@ main.contenedor {
   margin-bottom: 20px;
 }
 
-/* Botones */
 .producto-box button {
   margin: 4px 8px;
   padding: 14px 18px;
   border: none;
-  background-color: #505050;
-  color: rgb(0, 0, 0);
+  background-color: #555555;
+  color: #e0e0e0;
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
 
 .producto-box button:hover {
-  background-color: #505050;
+  background-color: #777777;
   color: white;
 }
 
 /* Publicidad */
 .publicidad {
   flex: 1;
-  padding-left: 30px;
 }
 
 .publicidad img {
   width: 100%;
+  height: auto;
   border-radius: 10px;
-  box-shadow: 0 0 10px #505050;
+  box-shadow: 0 0 10px #777777;
+  object-fit: cover;
 }
 
 /* Footer */
 footer {
-  background-color: #505050;
-  color: white;
+  background-color: #333333;
+  color: #e0e0e0;
   text-align: center;
   padding: 15px 0;
   margin-top: 40px;
   font-size: 16px;
+}
+
+/* --------------------------------------------- */
+/*                RESPONSIVE DESIGN              */
+/* --------------------------------------------- */
+
+/* Tablets (menor a 992px) */
+@media (max-width: 991px) {
+  main.contenedor {
+    flex-direction: column;
+    padding: 30px;
+  }
+
+  .productos {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .publicidad {
+    padding-top: 30px;
+  }
+}
+
+/* Celulares (menor a 768px) */
+@media (max-width: 767px) {
+  header {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  header .logo img {
+    margin: 0 0 10px 0;
+    filter: brightness(0) invert(1);
+  }
+
+  .productos {
+    grid-template-columns: 1fr;
+  }
+
+  .producto {
+    padding: 10px;
+  }
+
+  .producto h2 {
+    font-size: 16px;
+  }
+
+  .producto-box img {
+    width: 180px;
+    height: 180px;
+  }
+
+  .producto-box button {
+    padding: 10px;
+    font-size: 14px;
+  }
+
+  .menu-carrito {
+    width: 90vw;
+    top: 50px;
+    right: 5vw;
+    background-color: #222222;
+    color: #e0e0e0;
+  }
+
+  main.contenedor {
+    padding: 20px;
+  }
+
+  .publicidad img {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    height: auto;
+  }
+}
+
+/* Celulares en horizontal (pantallas anchas pero bajas) */
+@media (max-width: 900px) and (orientation: landscape) {
+  main.contenedor {
+    flex-direction: row;
+    flex-wrap: nowrap;
+  }
+
+  .productos {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .publicidad {
+    padding-left: 20px;
+    padding-top: 0;
+  }
+}
+
+/* Teléfonos muy pequeños (verticales) */
+@media (max-width: 480px) {
+  .producto-box img {
+    width: 160px;
+    height: 160px;
+  }
+
+  .producto-box button {
+    padding: 8px;
+    font-size: 13px;
+  }
+
+  #cerrar-carrito,
+  #finalizar-compra {
+    padding: 10px;
+    font-size: 14px;
+    margin-right: 5px;
+  }
 }
